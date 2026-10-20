@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>jlog: a fast, read-only JSON Lines log pager</title>
+<style>
+  :root { color-scheme: light dark; --fg: #1d1d1f; --bg: #fff; --muted: #6b6b70; --line: #e3e3e6; --code: #f4f4f6; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e8e8ea; --bg: #141416; --muted: #9a9aa0; --line: #2c2c31; --code: #1d1d21; } }
+  body { margin: 0 auto; max-width: 880px; padding: 24px 16px; font: 15px/1.55 system-ui, sans-serif; color: var(--fg); background: var(--bg); }
+  h1 { margin-bottom: 0; } .lead { color: var(--muted); margin-top: 4px; }
+  pre, code { font: 13px ui-monospace, Menlo, Consolas, monospace; background: var(--code); border-radius: 4px; }
+  pre { padding: 10px 12px; overflow-x: auto; } code { padding: 1px 4px; }
+  table { border-collapse: collapse; width: 100%; } td { border-bottom: 1px solid var(--line); padding: 6px 8px 6px 0; vertical-align: top; }
+  td code { word-break: break-all; font-size: 11px; }
+</style>
+</head>
+<body>
+<h1>jlog</h1>
+<p class="lead">A small, fast, read-only pager for JSON Lines logs, in the terminal or a local browser tab. One native executable, no runtime.</p>
+
+<h2>Install v0.1.0</h2>
+<p>Linux and macOS:</p>
+<pre>curl -fsSL https://jlog.logging.work/install.sh | sh</pre>
+<p>The script downloads the archive for your system, checks its SHA-256 against
+<a href="latest/SHA256SUMS">SHA256SUMS</a> and installs <code>jlog</code> into <code>~/.local/bin</code>
+(override with <code>JLOG_INSTALL_DIR</code>). Or download an archive yourself:</p>
+
+<table>
+<tr><td>macOS Apple silicon</td><td><a href="releases/v0.1.0/jlog-0.1.0-aarch64-apple-darwin.tar.gz">jlog-0.1.0-aarch64-apple-darwin.tar.gz</a></td><td><code>473832cd3554d5caede6b81296707ed536f8fafef0ed96a66b177b6a48153c0b</code></td></tr>
+<tr><td>Linux ARM64</td><td><a href="releases/v0.1.0/jlog-0.1.0-aarch64-unknown-linux-gnu.tar.gz">jlog-0.1.0-aarch64-unknown-linux-gnu.tar.gz</a></td><td><code>7a1f74f66e4cff3910751b82c4d4754ff4176dbf85fc2ed98e9d52e2c0d72737</code></td></tr>
+<tr><td>macOS Intel</td><td><a href="releases/v0.1.0/jlog-0.1.0-x86_64-apple-darwin.tar.gz">jlog-0.1.0-x86_64-apple-darwin.tar.gz</a></td><td><code>3fc48cb9e3ed99173db54295ef29c8b4d7cf13bf3a87bdfb3208c3cd684c192f</code></td></tr>
+<tr><td>Windows x86_64</td><td><a href="releases/v0.1.0/jlog-0.1.0-x86_64-pc-windows-msvc.zip">jlog-0.1.0-x86_64-pc-windows-msvc.zip</a></td><td><code>e34b519f2f9be302b67f8d9d6607e5523d081ca53899f880c7c6866f1958f894</code></td></tr>
+<tr><td>Linux x86_64</td><td><a href="releases/v0.1.0/jlog-0.1.0-x86_64-unknown-linux-gnu.tar.gz">jlog-0.1.0-x86_64-unknown-linux-gnu.tar.gz</a></td><td><code>551a59a3b44c04c8321531b14cb5a3b9b44362770b244320b6a350708c7dc839</code></td></tr>
+</table>
+<p>Released 2026-10-20. Windows: unzip and put <code>jlog.exe</code> on your <code>PATH</code>.</p>
+
+<h2>Quick start</h2>
+<pre>jlog app.jsonl                  # open a log file
+kubectl logs deploy/api | jlog  # page piped logs
+jlog --web app.jsonl            # browse in a local 127.0.0.1-only web page
+jlog --manual                   # full offline manual</pre>
+
+<h2>Older releases</h2>
+<ul>
+</ul>
+</body>
+</html>
