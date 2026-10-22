@@ -1,7 +1,15 @@
 #!/bin/sh
 # Installs the latest jlog release for this machine, verifying its SHA-256 checksum.
 # Usage: curl -fsSL https://jlog.logging.work/install.sh | sh
+#        curl -fsSL https://jlog.logging.work/install.sh | sh -s -- --minimal   (no jlog send/receive)
 set -eu
+prefix=jlog
+for arg in "$@"; do
+    case "$arg" in
+        --minimal) prefix=jlog-minimal ;;
+        *) echo "jlog: unknown option $arg (supported: --minimal)" >&2; exit 2 ;;
+    esac
+done
 base="${JLOG_BASE_URL:-https://jlog.logging.work}"
 dest="${JLOG_INSTALL_DIR:-$HOME/.local/bin}"
 
@@ -21,7 +29,7 @@ tmp=$(mktemp -d)
 trap 'rm -rf "$tmp"' EXIT INT TERM
 
 version=$(curl -fsSL "$base/latest/VERSION")
-file="jlog-${version}-${arch}-${os}.tar.gz"
+file="${prefix}-${version}-${arch}-${os}.tar.gz"
 echo "jlog: downloading $file"
 fetch "$base/latest/$file" "$tmp/$file"
 fetch "$base/latest/SHA256SUMS" "$tmp/SHA256SUMS"
@@ -39,6 +47,11 @@ fi
 
 tar -xzf "$tmp/$file" -C "$tmp"
 mkdir -p "$dest"
-install -m 0755 "$tmp/jlog-${version}-${arch}-${os}/jlog" "$dest/jlog"
+install -m 0755 "$tmp/${prefix}-${version}-${arch}-${os}/jlog" "$dest/jlog"
 echo "jlog: installed $version to $dest/jlog"
+page="$tmp/${prefix}-${version}-${arch}-${os}/jlog.1"
+if [ -f "$page" ]; then
+    mandir="${JLOG_MAN_DIR:-$(dirname "$dest")/share/man/man1}"
+    mkdir -p "$mandir" && install -m 0644 "$page" "$mandir/jlog.1" && echo "jlog: man page in $mandir/jlog.1"
+fi
 case ":$PATH:" in *":$dest:"*) ;; *) echo "jlog: add $dest to your PATH" ;; esac
