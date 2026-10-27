@@ -19,7 +19,7 @@
 <h1>jlog</h1>
 <p class="lead">A small, fast, read-only pager for JSON Lines logs, in the terminal or a local browser tab. One native executable, no runtime.</p>
 
-<h2>Install v0.2.0</h2>
+<h2>Install v0.2.1</h2>
 <p>Linux and macOS:</p>
 <pre>curl -fsSL https://jlog.logging.work/install.sh | sh</pre>
 <p>The script downloads the archive for your system, checks its SHA-256 against
@@ -27,13 +27,16 @@
 (override with <code>JLOG_INSTALL_DIR</code>) and its man page into <code>~/.local/share/man/man1</code>. Or download an archive yourself:</p>
 
 <table>
-<tr><td>macOS Apple silicon</td><td><a href="releases/v0.2.0/jlog-0.2.0-aarch64-apple-darwin.tar.gz">jlog-0.2.0-aarch64-apple-darwin.tar.gz</a></td><td><code>10c4f26657eaa3cf9545dec81f7c7a90bd2decff44897d2637a3a12bef94c3a4</code></td></tr>
-<tr><td>Linux ARM64</td><td><a href="releases/v0.2.0/jlog-0.2.0-aarch64-unknown-linux-gnu.tar.gz">jlog-0.2.0-aarch64-unknown-linux-gnu.tar.gz</a></td><td><code>827f8d12159c54d58f2ddf0f70f63a030ca62d43b5016e74ac3302dcb938707c</code></td></tr>
-<tr><td>macOS Intel</td><td><a href="releases/v0.2.0/jlog-0.2.0-x86_64-apple-darwin.tar.gz">jlog-0.2.0-x86_64-apple-darwin.tar.gz</a></td><td><code>54a5b2b333f677d4a855f38985cd92e23fdc73376882d8db57ad111b8c46340c</code></td></tr>
-<tr><td>Windows x86_64</td><td><a href="releases/v0.2.0/jlog-0.2.0-x86_64-pc-windows-msvc.zip">jlog-0.2.0-x86_64-pc-windows-msvc.zip</a></td><td><code>d0255593a88c92511a280b0d5607aeb146dc74ff46c96cd05a2f1470021d2f92</code></td></tr>
-<tr><td>Linux x86_64</td><td><a href="releases/v0.2.0/jlog-0.2.0-x86_64-unknown-linux-gnu.tar.gz">jlog-0.2.0-x86_64-unknown-linux-gnu.tar.gz</a></td><td><code>8c0588241e03f95f35ee29229373624700f0e8390f515ec854d91916c4f90b45</code></td></tr>
+<tr><td>macOS Apple silicon</td><td><a href="releases/v0.2.1/jlog-0.2.1-aarch64-apple-darwin.tar.gz">jlog-0.2.1-aarch64-apple-darwin.tar.gz</a></td><td><code>a9db191357d5b46fa62301cf2590c7455a927bea3449abee93d714ffd7d20a90</code></td></tr>
+<tr><td>Linux ARM64</td><td><a href="releases/v0.2.1/jlog-0.2.1-aarch64-unknown-linux-gnu.tar.gz">jlog-0.2.1-aarch64-unknown-linux-gnu.tar.gz</a></td><td><code>00664adf4fe40e0dc99281907314ab15b524042e55d24df812061f34600bde1b</code></td></tr>
+<tr><td>macOS Intel</td><td><a href="releases/v0.2.1/jlog-0.2.1-x86_64-apple-darwin.tar.gz">jlog-0.2.1-x86_64-apple-darwin.tar.gz</a></td><td><code>9f9a3322371bc0f05ec1887b4eb20eb26214f3036c929b517d394dd25ada886b</code></td></tr>
+<tr><td>Windows x86_64</td><td><a href="releases/v0.2.1/jlog-0.2.1-x86_64-pc-windows-msvc.zip">jlog-0.2.1-x86_64-pc-windows-msvc.zip</a></td><td><code>880f4a81e976ba1b72e9f9d6983ec0a011b053aad3e0c0ce6b1d6647eadc5313</code></td></tr>
+<tr><td>Linux x86_64</td><td><a href="releases/v0.2.1/jlog-0.2.1-x86_64-unknown-linux-gnu.tar.gz">jlog-0.2.1-x86_64-unknown-linux-gnu.tar.gz</a></td><td><code>92e7e478c7f78515d61ede26a9a0ee4d433f0a47ca7eec2265cb3cba54b611e9</code></td></tr>
 </table>
-<p>Released 2026-10-22. Windows: unzip and put <code>jlog.exe</code> on your <code>PATH</code>.</p>
+<p>Windows (PowerShell): installs into <code>%LOCALAPPDATA%\Programs\jlog</code> and adds it to
+your user <code>PATH</code> (<code>-NoPath</code> to skip, <code>-Minimal</code> for the minimal build):</p>
+<pre>irm https://jlog.logging.work/install.ps1 | iex</pre>
+<p>Released 2026-10-27. Or unzip a Windows archive and put <code>jlog.exe</code> on your <code>PATH</code>.</p>
 
 <h3>Minimal variant</h3>
 <p>The same viewer without <code>jlog send</code> / <code>jlog receive</code> (peer-to-peer
@@ -41,11 +44,11 @@ transfer). It makes no network connections at all; the optional <code>--web</cod
 served on 127.0.0.1 only. For environments that do not allow networking tools:</p>
 <pre>curl -fsSL https://jlog.logging.work/install.sh | sh -s -- --minimal</pre>
 <table>
-<tr><td>macOS Apple silicon</td><td><a href="releases/v0.2.0/jlog-minimal-0.2.0-aarch64-apple-darwin.tar.gz">jlog-minimal-0.2.0-aarch64-apple-darwin.tar.gz</a></td><td><code>505853398bb847c31eec90cfccd8c951f1d7e5581a4feaf2c2689aca396c6b0f</code></td></tr>
-<tr><td>Linux ARM64</td><td><a href="releases/v0.2.0/jlog-minimal-0.2.0-aarch64-unknown-linux-gnu.tar.gz">jlog-minimal-0.2.0-aarch64-unknown-linux-gnu.tar.gz</a></td><td><code>1afaec572d1639112529d8b3439750e282698feabbd1cc27cf2bd67ca644b0e1</code></td></tr>
-<tr><td>macOS Intel</td><td><a href="releases/v0.2.0/jlog-minimal-0.2.0-x86_64-apple-darwin.tar.gz">jlog-minimal-0.2.0-x86_64-apple-darwin.tar.gz</a></td><td><code>bc53cf26eccf25ce86faf6f6034ce26465e2faefb31c3fb429b06fbe7d8c2ef7</code></td></tr>
-<tr><td>Windows x86_64</td><td><a href="releases/v0.2.0/jlog-minimal-0.2.0-x86_64-pc-windows-msvc.zip">jlog-minimal-0.2.0-x86_64-pc-windows-msvc.zip</a></td><td><code>13a2443f73b6f458a9d453f274fda69b0a2e23faeb88cbf1ff561157ae765dee</code></td></tr>
-<tr><td>Linux x86_64</td><td><a href="releases/v0.2.0/jlog-minimal-0.2.0-x86_64-unknown-linux-gnu.tar.gz">jlog-minimal-0.2.0-x86_64-unknown-linux-gnu.tar.gz</a></td><td><code>fe0a8c458021ca53540fea88a00ff6bf3047ddd7b291f48070a096cdbb9ab29d</code></td></tr>
+<tr><td>macOS Apple silicon</td><td><a href="releases/v0.2.1/jlog-minimal-0.2.1-aarch64-apple-darwin.tar.gz">jlog-minimal-0.2.1-aarch64-apple-darwin.tar.gz</a></td><td><code>8b35830ce7a41e5e6aef17a0b59fdc13007a984867dbea7e8f67d7db0d67141d</code></td></tr>
+<tr><td>Linux ARM64</td><td><a href="releases/v0.2.1/jlog-minimal-0.2.1-aarch64-unknown-linux-gnu.tar.gz">jlog-minimal-0.2.1-aarch64-unknown-linux-gnu.tar.gz</a></td><td><code>984a43527f61fdecf1578752894cdc9819e0afd509abaf663bf7fd3a0246a5eb</code></td></tr>
+<tr><td>macOS Intel</td><td><a href="releases/v0.2.1/jlog-minimal-0.2.1-x86_64-apple-darwin.tar.gz">jlog-minimal-0.2.1-x86_64-apple-darwin.tar.gz</a></td><td><code>72386fc6806c92a7fa124693e8002580c8b05a82ff03142bc76b251e47046cdd</code></td></tr>
+<tr><td>Windows x86_64</td><td><a href="releases/v0.2.1/jlog-minimal-0.2.1-x86_64-pc-windows-msvc.zip">jlog-minimal-0.2.1-x86_64-pc-windows-msvc.zip</a></td><td><code>5e846c073a424e69a60afbbeac49ff38198b23f67b81c46c4a4adabf395432d1</code></td></tr>
+<tr><td>Linux x86_64</td><td><a href="releases/v0.2.1/jlog-minimal-0.2.1-x86_64-unknown-linux-gnu.tar.gz">jlog-minimal-0.2.1-x86_64-unknown-linux-gnu.tar.gz</a></td><td><code>1b60c22a078a8b49812e3761e450498625ad2aaa111e6dc4548eb137abd418e4</code></td></tr>
 </table>
 
 <h2>Quick start</h2>
@@ -58,6 +61,7 @@ jlog man                        # manual page (jlog manual: plain text)</pre>
 
 <h2>Older releases</h2>
 <ul>
+<li><a href="releases/v0.2.0/">v0.2.0</a> (<a href="releases/v0.2.0/SHA256SUMS">SHA256SUMS</a>)</li>
 <li><a href="releases/v0.1.1/">v0.1.1</a> (<a href="releases/v0.1.1/SHA256SUMS">SHA256SUMS</a>)</li>
 <li><a href="releases/v0.1.0/">v0.1.0</a> (<a href="releases/v0.1.0/SHA256SUMS">SHA256SUMS</a>)</li>
 </ul>
